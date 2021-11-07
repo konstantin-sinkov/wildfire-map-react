@@ -1,9 +1,10 @@
 import './App.css';
+import Map from "./components/map/Map";
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to the app!</h1>
+      <Map />
     </div>
   );
 }
