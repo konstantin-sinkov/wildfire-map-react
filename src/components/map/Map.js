@@ -1,7 +1,7 @@
 import GoogleMapReact from 'google-map-react';
 import "./Map.css";
 import LocationMarker from "../location-marker/LocationMarker";
-import config from "../../../config";
+import config from "../../config";
 
 const Map = ({ center, zoom }) => {
   return (
