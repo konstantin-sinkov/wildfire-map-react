@@ -1,16 +1,23 @@
 import GoogleMapReact from 'google-map-react';
 import "./Map.css";
 import LocationMarker from "../location-marker/LocationMarker";
+import EventInfoBox from "../event-info-box/EventInfoBox";
 import config from "../../config";
+import {useState} from "react";
 
 const Map = ({ eventData, center, zoom }) => {
+    const [eventInfo, setEventInfo] = useState(null);
+
     //checking events id
     const wildfires = eventData.map(elem => {
         if (elem.categories[0].id === "wildfires") {
-            return <LocationMarker lat={elem.geometry[0].coordinates[1]}
-                                   lng={elem.geometry[0].coordinates[0]} />
+            return <LocationMarker
+                        lat={elem.geometry[0].coordinates[1]}
+                        lng={elem.geometry[0].coordinates[0]}
+                        onClick={() => setEventInfo({id: elem.id, title: elem.title})}
+            />
         }
-        return null
+        return null;
     })
 
   return (
@@ -23,8 +30,11 @@ const Map = ({ eventData, center, zoom }) => {
            {
                wildfires
            }
-           {/*<LocationMarker lat={center.lat} lng={center.lng} />*/}
        </GoogleMapReact>
+       {
+           // if eventInfo != null
+           eventInfo && <EventInfoBox info={eventInfo} />
+       }
    </div>
   );
  }
