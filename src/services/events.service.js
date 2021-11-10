@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const instance = axios.create({
-    baseURL: 'https://eonet.sci.gsfc.nasa.gov/api/v3/events',
-    headers: {}
-});
+let config = {
+    baseURL: 'https://eonet.sci.gsfc.nasa.gov/api/v3/events'
+}
 
+const instance = axios.create(config);
 
-const loadEvents = async () => await instance('');
+const loadEvents = () => {
+    return instance.get('');
+}
 
 export {loadEvents};
 
