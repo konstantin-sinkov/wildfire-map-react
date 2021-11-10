@@ -8,22 +8,34 @@ function App() {
   const [eventData, setEventData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
-      const response = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v3/events');
-      const {events} = await response.json();
+  useEffect( async () => {
+    //start loading -> showing loader gif
+    await setLoading(true);
+
+    await loadEvents().then(({data}) => {
+      const {events} = data;
+      // console.log(events);
 
       setEventData(events);
-      setLoading(false);
+      // console.log(eventData);
+    });
 
-      console.log(eventData);
-    }
+    //loading finished  -> showing Map
+    await setLoading(false);
 
-    fetchEvents();
+    // const fetchEvents = async () => {
+    //   setLoading(true);
+    //   const response = await fetch('https://eonet.sci.gsfc.nasa.gov/api/v3/events');
+    //   const {events} = await response.json();
+    //
+    //   setEventData(events);
+    //   setLoading(false);
+    //
+    //   console.log(eventData);
+    // }
 
-    // console.log(eventData);
-  }, [])
+    // fetchEvents();
+  }, []);
 
   return (
     <div className="App">
