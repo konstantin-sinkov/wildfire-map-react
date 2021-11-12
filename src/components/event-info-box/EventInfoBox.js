@@ -1,6 +1,8 @@
+import './EventInfoBox.css';
+
 const EventInfoBox = ({info}) => {
   return (
-   <div>
+   <div className='event-info-box'>
        <h2>Event Location Info</h2>
        <ul>
            <li>ID: <strong>{info.id}</strong></li>

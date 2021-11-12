@@ -3,6 +3,7 @@ import {loadEvents} from "./services/events.service";
 import './App.css';
 import Map from "./components/map/Map";
 import Loader from "./components/loader/Loader";
+import Header from "./components/header/Header";
 
 function App() {
   const [eventData, setEventData] = useState([]);
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       {!loading ? <Map eventData={eventData}/> : <Loader />}
     </div>
   );
